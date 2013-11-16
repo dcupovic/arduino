@@ -13,14 +13,13 @@
 
 class NamedDHT11: public NamedSensor {
 private:
-	static char** doubleName(char* name);
 	static dht11 DHT11;
 	int pin;
 protected:
 	int readSensorI(int valueId, SensorState &state);
 	float readSensorF(int valueid, SensorState &state);
 public:
-	NamedDHT11(int pin, char * name);
+	NamedDHT11(int pin, char ** names);
 	virtual ~NamedDHT11();
 };
 

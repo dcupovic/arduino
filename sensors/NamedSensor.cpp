@@ -7,18 +7,16 @@
 
 #include "NamedSensor.h"
 
-NamedSensor::NamedSensor(const unsigned char numSensors, char* names[],
+NamedSensor::NamedSensor(const unsigned char numSensors, char** names,
 		unsigned long int frequency) {
 	this->numSensors = numSensors;
-	this->sensorNames = new char*[numSensors];
+	this->sensorNames = names;
 	this->values = new SensorReading[numSensors];
 	this->sensorStates = new SensorState[numSensors];
 	this->frequency = frequency;
 	this->lastReadTime = millis() - 1000;
 	for (unsigned char i = 0; i < numSensors; ++i) {
-		this->sensorNames[i] = new char[strlen(names[i]) + 1];
 		this->sensorStates[i] = NOT_READ;
-		strcpy(this->sensorNames[i], names[i]);
 	}
 }
 

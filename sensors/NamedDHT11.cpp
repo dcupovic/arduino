@@ -7,19 +7,7 @@
 
 #include "NamedDHT11.h"
 
-char** NamedDHT11::doubleName(char* name) {
-	char ** names = new char* [2];
-	names[0] = new char[strlen(name) + 2];
-	names[1] = new char[strlen(name) + 2];
-	names[0][0] = 'T';
-	names[1][0] = 'V';
-	strcpy(names[0] + 1, name);
-	strcpy(names[1] + 1, name);
-	return names;
-}
-
-
-NamedDHT11::NamedDHT11(int pin, char * name) : NamedSensor(2u, &name, 5000u), pin(pin) {
+NamedDHT11::NamedDHT11(int pin, char ** names) : NamedSensor(2u, names, 5000u), pin(pin) {
 
 }
 

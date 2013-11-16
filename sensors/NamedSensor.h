@@ -29,7 +29,7 @@ protected:
 	virtual int readSensorI(int valueId, SensorState &state) = 0;
 	virtual float readSensorF(int valueid, SensorState &state) = 0;
 public:
-	NamedSensor(const unsigned char numSensors, char* names[], unsigned long int frequency);
+	NamedSensor(const unsigned char numSensors, char** names, unsigned long int frequency);
 	virtual ~NamedSensor();
 	float valueF(int valueId = 0);
 	int valueI(int valueId = 0);
