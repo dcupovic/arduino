@@ -16,10 +16,9 @@ private:
 	static dht11 DHT11;
 	int pin;
 protected:
-	int readSensorI(int valueId, SensorState &state);
-	float readSensorF(int valueid, SensorState &state);
+	void readSensors();
 public:
-	NamedDHT11(int pin, char ** names);
+	NamedDHT11(int pin, const char * const * names);
 	virtual ~NamedDHT11();
 };
 

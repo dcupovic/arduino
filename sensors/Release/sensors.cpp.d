@@ -8,7 +8,9 @@ sensors.cpp.d sensors.cpp.o: ../sensors.cpp ../sensors.h \
   D:\programiranje\arduino-1.5.4\hardware\arduino\avr\cores\arduino/Print.h \
   D:\programiranje\arduino-1.5.4\hardware\arduino\avr\cores\arduino/Printable.h \
   D:\programiranje\arduino-1.5.4\hardware\arduino\avr\cores\arduino/new.h \
-  D:\programiranje\arduino-1.5.4\hardware\arduino\avr\variants\mega/pins_arduino.h
+  D:\programiranje\arduino-1.5.4\hardware\arduino\avr\variants\mega/pins_arduino.h \
+  ../NamedDHT11.h ../NamedSensor.h \
+  C:\Users\Dean\Documents\Arduino\libraries\DHT/dht11.h
 
 ../sensors.h:
 
@@ -31,3 +33,9 @@ D:\programiranje\arduino-1.5.4\hardware\arduino\avr\cores\arduino/Printable.h:
 D:\programiranje\arduino-1.5.4\hardware\arduino\avr\cores\arduino/new.h:
 
 D:\programiranje\arduino-1.5.4\hardware\arduino\avr\variants\mega/pins_arduino.h:
+
+../NamedDHT11.h:
+
+../NamedSensor.h:
+
+C:\Users\Dean\Documents\Arduino\libraries\DHT/dht11.h:

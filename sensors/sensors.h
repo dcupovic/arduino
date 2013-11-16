@@ -8,7 +8,7 @@
 #define sensors_H_
 #include "Arduino.h"
 //add your includes for the project sensors here
-
+#include "NamedDHT11.h"
 
 //end of add your includes here
 #ifdef __cplusplus

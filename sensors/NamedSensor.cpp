@@ -7,11 +7,11 @@
 
 #include "NamedSensor.h"
 
-NamedSensor::NamedSensor(const unsigned char numSensors, char** names,
+NamedSensor::NamedSensor(const unsigned char numSensors, const char* const* names,
 		unsigned long int frequency) {
 	this->numSensors = numSensors;
 	this->sensorNames = names;
-	this->values = new SensorReading[numSensors];
+	this->sensorValues = new SensorReading[numSensors];
 	this->sensorStates = new SensorState[numSensors];
 	this->frequency = frequency;
 	this->lastReadTime = millis() - 1000;
@@ -35,16 +35,16 @@ bool NamedSensor::hasCooledOff() {
 
 float NamedSensor::valueF(int valueId) {
 	if(hasCooledOff()) {
-		values[valueId].floatReading = readSensorF(valueId, sensorStates[valueId]);
+		readSensors();
 	}
-	return values[valueId].floatReading;
+	return sensorValues[valueId].floatReading;
 }
 
 int NamedSensor::valueI(int valueId) {
 	if(hasCooledOff()) {
-		values[valueId].integerReading = readSensorI(valueId, sensorStates[valueId]);
+		readSensors();
 	}
-	return values[valueId].integerReading;
+	return sensorValues[valueId].integerReading;
 }
 
 SensorState NamedSensor::getState(int valueId) {

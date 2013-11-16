@@ -7,7 +7,9 @@
 
 #include "NamedDHT11.h"
 
-NamedDHT11::NamedDHT11(int pin, char ** names) : NamedSensor(2u, names, 5000u), pin(pin) {
+dht11 NamedDHT11::DHT11;
+
+NamedDHT11::NamedDHT11(int pin, const char * const * names) : NamedSensor(2u, names, 5000u), pin(pin) {
 
 }
 
@@ -15,21 +17,15 @@ NamedDHT11::~NamedDHT11() {
 	// TODO Auto-generated destructor stub
 }
 
-int NamedDHT11::readSensorI(int valueId, SensorState &state) {
+void NamedDHT11::readSensors() {
 	if(DHT11.read(pin) == DHTLIB_OK) {
-		state = OK;
-		if(valueId == 0)
-			return DHT11.temperature;
-		else
-			return DHT11.humidity;
+		sensorStates[0] = OK;
+		sensorStates[1] = OK;
+		sensorValues[0].integerReading = DHT11.temperature;
+		sensorValues[1].integerReading = DHT11.humidity;
 	}
 	else {
-		state = ERROR_READING;
+		sensorStates[0] = ERROR_READING;
+		sensorStates[1] = ERROR_READING;
 	}
-	return 0;
 }
-
-float NamedDHT11::readSensorF(int valueid, SensorState &state) {
-	return 0.0;
-}
-

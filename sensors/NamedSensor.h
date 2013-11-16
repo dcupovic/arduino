@@ -20,16 +20,15 @@ enum SensorState {NOT_READ, ERROR_READING, OK };
 class NamedSensor {
 private:
 	unsigned char numSensors;
-	char** sensorNames;
-	SensorState* sensorStates;
-	SensorReading* values;
+	const char* const* sensorNames;
 	unsigned long int frequency, lastReadTime;
 	bool hasCooledOff();
 protected:
-	virtual int readSensorI(int valueId, SensorState &state) = 0;
-	virtual float readSensorF(int valueid, SensorState &state) = 0;
+	SensorState* sensorStates;
+	SensorReading* sensorValues;
+	virtual void readSensors() = 0;
 public:
-	NamedSensor(const unsigned char numSensors, char** names, unsigned long int frequency);
+	NamedSensor(const unsigned char numSensors, const char* const* names, unsigned long int frequency);
 	virtual ~NamedSensor();
 	float valueF(int valueId = 0);
 	int valueI(int valueId = 0);
