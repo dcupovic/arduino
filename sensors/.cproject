@@ -22,6 +22,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensors/arduino/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensors/arduino/variant}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensors/Libraries/DHT}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensors/Libraries/OneWire}&quot;"/>
 								</option>
 								<inputType id="it.baeyens.arduino.compiler.cpp.sketch.input.1638393358" name="CPP source files" superClass="it.baeyens.arduino.compiler.cpp.sketch.input"/>
 							</tool>
@@ -30,6 +31,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensors/arduino/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensors/arduino/variant}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensors/Libraries/DHT}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensors/Libraries/OneWire}&quot;"/>
 								</option>
 								<inputType id="it.baeyens.arduino.compiler.c.sketch.input.1495872313" name="C Source Files" superClass="it.baeyens.arduino.compiler.c.sketch.input"/>
 							</tool>
@@ -55,4 +57,5 @@
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="refreshScope"/>
 </cproject>

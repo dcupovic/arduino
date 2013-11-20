@@ -7,6 +7,7 @@ const char*  PROGMEM dhtNameV1 = "VZ1";
 const char * const dhtNames[] = {dhtNameT1, dhtNameT1};
 
 NamedDHT11 dht1(1, dhtNames);
+NamedOneWireSensor n(2, NULL, "aa");
 //The setup function is called once at startup of the sketch
 void setup()
 {

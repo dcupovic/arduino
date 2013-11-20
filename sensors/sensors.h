@@ -9,6 +9,7 @@
 #include "Arduino.h"
 //add your includes for the project sensors here
 #include "NamedDHT11.h"
+#include "NamedOneWireSensor.h"
 
 //end of add your includes here
 #ifdef __cplusplus
