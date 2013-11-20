@@ -20,6 +20,7 @@ protected:
 public:
 	NamedDHT11(int pin, const char * const * names);
 	virtual ~NamedDHT11();
+	SensorValueType getValueType(int valueId);
 };
 
 #endif /* NAMEDDHT11_H_ */

@@ -16,6 +16,7 @@ union SensorReading {
 };
 
 enum SensorState {NOT_READ, ERROR_READING, OK };
+enum SensorValueType {FLOAT_VALUE, INTEGER_VALUE};
 
 class NamedSensor {
 private:
@@ -33,6 +34,7 @@ public:
 	float valueF(int valueId = 0);
 	int valueI(int valueId = 0);
 	SensorState getState(int valueId);
+	virtual SensorValueType getValueType(int valueId);
 };
 
 #endif /* NAMEDSENSOR_H_ */

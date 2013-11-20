@@ -29,3 +29,7 @@ void NamedDHT11::readSensors() {
 		sensorStates[1] = ERROR_READING;
 	}
 }
+
+SensorValueType NamedDHT11::getValueType(int valueId) {
+	return INTEGER_VALUE;
+}

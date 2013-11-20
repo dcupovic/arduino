@@ -50,3 +50,7 @@ int NamedSensor::valueI(int valueId) {
 SensorState NamedSensor::getState(int valueId) {
 	return sensorStates[valueId];
 }
+
+SensorValueType NamedSensor::getValueType(int valueId) {
+	return FLOAT_VALUE;
+}
