@@ -9,6 +9,7 @@
 #define NAMEDSENSOR_H_
 
 #include "Arduino.h"
+#include "Print.h"
 
 union SensorReading {
 	float floatReading;
@@ -31,10 +32,17 @@ protected:
 public:
 	NamedSensor(const unsigned char numSensors, const char* const* names, unsigned long int frequency);
 	virtual ~NamedSensor();
-	float valueF(int valueId = 0);
-	int valueI(int valueId = 0);
-	SensorState getState(int valueId);
-	virtual SensorValueType getValueType(int valueId);
+	float valueF(unsigned char valueId = 0);
+	int valueI(unsigned char valueId = 0);
+	SensorState getState(unsigned char valueId = 0);
+	virtual SensorValueType getValueType(unsigned char valueId = 0);
+	unsigned char getNumSensors();
+	const char * getName(unsigned char valueId = 0);
 };
+
+void SensorPrint(Print &print, NamedSensor &sensor);
+void SensorPrint(Print &print, NamedSensor &sensor, unsigned char valueId);
+void SensorPrintLn(Print &print, NamedSensor &sensor);
+void SensorPrintLn(Print &print, NamedSensor &sensor, unsigned char valueId);
 
 #endif /* NAMEDSENSOR_H_ */
