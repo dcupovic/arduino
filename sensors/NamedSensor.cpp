@@ -66,10 +66,17 @@ void SensorPrint(Print& print, NamedSensor& sensor) {
 void SensorPrint(Print& print, NamedSensor& sensor, unsigned char valueId) {
 	print.print(sensor.getName(valueId));
 	print.print(": ");
-	if(sensor.getValueType(valueId) == FLOAT_VALUE)
+	switch (sensor.getState(valueId)) {
+	OK: if (sensor.getValueType(valueId) == FLOAT_VALUE)
 		print.print(sensor.valueF(valueId), 1);
-	if(sensor.getValueType(valueId) == INTEGER_VALUE)
+	if (sensor.getValueType(valueId) == INTEGER_VALUE)
 		print.print(sensor.valueI());
+	break;
+	NOT_READ: print.print("?");
+	break;
+	ERROR_READING: print.print("!");
+	break;
+	}
 }
 
 void SensorPrintLn(Print& print, NamedSensor& sensor) {

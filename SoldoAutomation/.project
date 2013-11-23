@@ -32,6 +32,11 @@
 			<locationURI>ArduinoPivateLibPath/DHT</locationURI>
 		</link>
 		<link>
+			<name>Libraries/LiquidCrystal</name>
+			<type>2</type>
+			<locationURI>ArduinoPivateLibPath/LiquidCrystal</locationURI>
+		</link>
+		<link>
 			<name>Libraries/OneWire</name>
 			<type>2</type>
 			<locationURI>ArduinoPivateLibPath/OneWire</locationURI>
