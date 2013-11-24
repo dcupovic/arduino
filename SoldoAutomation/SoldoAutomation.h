@@ -8,7 +8,9 @@
 #define SoldoAutomation_H_
 #include "Arduino.h"
 //add your includes for the project SoldoAutomation here
-
+#include "SoldoSensors.h"
+#include "NamedSensor.h"
+#include "dht11.h"
 
 //end of add your includes here
 #ifdef __cplusplus

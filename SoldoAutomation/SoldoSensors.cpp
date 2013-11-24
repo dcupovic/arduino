@@ -6,6 +6,8 @@
  */
 #include "SoldoSensors.h"
 
+
+NamedSensor* soldoSensors[SOLDO_SENSORS_COUNT];
 //DHTs
 const char* PROGMEM dhtNameT1 = "TZ1";
 const char* PROGMEM dhtNameV1 = "VZ1%";
@@ -24,14 +26,17 @@ const byte T2Address[] = {0x28, 0x16, 0xBF, 0xAB, 0x04, 0x00 ,0x00, 0x74};
 const byte T3Address[] = {0x28, 0x4B, 0x28, 0xAC, 0x04, 0x00 ,0x00, 0x74};
 
 
-//NamedDHT11 dht1(1, dhtNames);
+//NamedDHT11 dht1(1, dhtNames1);
 //NamedOneWireSensor n(2, NULL, "aa");
 
 
 void initSensors() {
 	soldoSensors[0] = new NamedDHT11(PORT2_WIRE5_PIN, dhtNames1);
 	soldoSensors[1] = new NamedDHT11(PORT2_WIRE6_PIN, dhtNames2);
-	soldoSensors[2] = new NamedOneWireSensor(PORT2_WIRE4_PIN, T1Address, TName1);
-	soldoSensors[3] = new NamedOneWireSensor(PORT2_WIRE4_PIN, T2Address, TName2);
-	soldoSensors[4] = new NamedOneWireSensor(PORT2_WIRE4_PIN, T3Address, TName3);
+	soldoSensors[2] = new NamedOneWireSensor(PORT2_WIRE4_PIN, T1Address,
+			TName1);
+	soldoSensors[3] = new NamedOneWireSensor(PORT2_WIRE4_PIN, T2Address,
+			TName2);
+	soldoSensors[4] = new NamedOneWireSensor(PORT2_WIRE4_PIN, T3Address,
+			TName3);
 }
