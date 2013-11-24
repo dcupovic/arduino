@@ -21,28 +21,29 @@ enum SensorValueType {FLOAT_VALUE, INTEGER_VALUE};
 
 class NamedSensor {
 private:
-	unsigned char numSensors;
+	byte numSensors;
 	const char* const* sensorNames;
 	unsigned long int frequency, lastReadTime;
 	bool hasCooledOff();
 protected:
 	SensorState* sensorStates;
 	SensorReading* sensorValues;
-	virtual void readSensors() = 0;
+	virtual void doReadSensors() = 0;
 public:
-	NamedSensor(const unsigned char numSensors, const char* const* names, unsigned long int frequency);
+	NamedSensor(const byte numSensors, const char* const* names, unsigned long int frequency);
 	virtual ~NamedSensor();
-	float valueF(unsigned char valueId = 0);
-	int valueI(unsigned char valueId = 0);
-	SensorState getState(unsigned char valueId = 0);
-	virtual SensorValueType getValueType(unsigned char valueId = 0);
-	unsigned char getNumSensors();
-	const char * getName(unsigned char valueId = 0);
+	float valueF(byte valueId = 0);
+	int valueI(byte valueId = 0);
+	virtual SensorState getState(byte valueId = 0);
+	virtual SensorValueType getValueType(byte valueId = 0);
+	byte getNumSensors();
+	const char * getName(byte valueId = 0);
+	void readSensors();
 };
 
 void SensorPrint(Print &print, NamedSensor &sensor);
-void SensorPrint(Print &print, NamedSensor &sensor, unsigned char valueId);
+void SensorPrint(Print &print, NamedSensor &sensor, byte valueId);
 void SensorPrintLn(Print &print, NamedSensor &sensor);
-void SensorPrintLn(Print &print, NamedSensor &sensor, unsigned char valueId);
+void SensorPrintLn(Print &print, NamedSensor &sensor, byte valueId);
 
 #endif /* NAMEDSENSOR_H_ */

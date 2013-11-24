@@ -21,7 +21,6 @@
 								<option id="it.baeyens.arduino.compiler.cpp.sketch.option.incpath.1459743198" name="Include Paths (-I)" superClass="it.baeyens.arduino.compiler.cpp.sketch.option.incpath" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SoldoAutomation/arduino/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SoldoAutomation/arduino/variant}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensors}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SoldoAutomation/Libraries/DHT}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SoldoAutomation/Libraries/OneWire}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SoldoAutomation/Libraries/LiquidCrystal}&quot;"/>

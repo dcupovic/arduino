@@ -7,13 +7,16 @@ void setup()
 {
 // Add your initialization code here
 	initSensors();
+	Serial.begin(57600);
 }
 
 // The loop function is called in an endless loop
 void loop()
 {
 //Add your repeated code here
-//	for(int i = 0; i < SOLDO_SENSORS_COUNT; ++i)
-//		SensorPrint(Serial, *(soldoSensors[i]));
-	//delay(2000);
+	readSensors();
+	for(int i = 0; i < SOLDO_SENSORS_COUNT; ++i)
+		SensorPrintLn(Serial, *(soldoSensors[i]));
+	Serial.println("============");
+	delay(2000);
 }

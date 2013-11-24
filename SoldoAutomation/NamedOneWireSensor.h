@@ -17,8 +17,9 @@ private:
 	uint8_t pin;
 	byte type_s;
 	const byte* address;
+	const char* sname;
 protected:
-	void readSensors();
+	void doReadSensors();
 public:
 	NamedOneWireSensor(uint8_t pin, const byte* address, const char * name);
 	virtual ~NamedOneWireSensor();

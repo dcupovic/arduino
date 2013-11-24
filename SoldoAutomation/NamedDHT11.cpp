@@ -17,8 +17,11 @@ NamedDHT11::~NamedDHT11() {
 	// TODO Auto-generated destructor stub
 }
 
-void NamedDHT11::readSensors() {
+void NamedDHT11::doReadSensors() {
 	if(DHT11.read(pin) == DHTLIB_OK) {
+#ifdef DEBUG
+		Serial.print("OK");
+#endif
 		sensorStates[0] = OK;
 		sensorStates[1] = OK;
 		sensorValues[0].integerReading = DHT11.temperature;
@@ -30,6 +33,6 @@ void NamedDHT11::readSensors() {
 	}
 }
 
-SensorValueType NamedDHT11::getValueType(int valueId) {
+SensorValueType NamedDHT11::getValueType(byte valueId) {
 	return INTEGER_VALUE;
 }

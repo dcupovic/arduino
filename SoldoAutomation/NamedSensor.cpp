@@ -7,7 +7,7 @@
 
 #include "NamedSensor.h"
 
-NamedSensor::NamedSensor(const unsigned char numSensors, const char* const* names,
+NamedSensor::NamedSensor(const byte numSensors, const char* const* names,
 		unsigned long int frequency) {
 	this->numSensors = numSensors;
 	this->sensorNames = names;
@@ -15,7 +15,7 @@ NamedSensor::NamedSensor(const unsigned char numSensors, const char* const* name
 	this->sensorStates = new SensorState[numSensors];
 	this->frequency = frequency;
 	this->lastReadTime = millis() - 1000;
-	for (unsigned char i = 0; i < numSensors; ++i) {
+	for (byte i = 0; i < numSensors; ++i) {
 		this->sensorStates[i] = NOT_READ;
 	}
 }
@@ -33,66 +33,70 @@ bool NamedSensor::hasCooledOff() {
 	return false;
 }
 
-float NamedSensor::valueF(unsigned char valueId) {
-	if(hasCooledOff()) {
-		readSensors();
-	}
+float NamedSensor::valueF(byte valueId) {
 	return sensorValues[valueId].floatReading;
 }
 
-int NamedSensor::valueI(unsigned char valueId) {
-	if(hasCooledOff()) {
-		readSensors();
-	}
+int NamedSensor::valueI(byte valueId) {
 	return sensorValues[valueId].integerReading;
 }
 
-SensorState NamedSensor::getState(unsigned char valueId) {
+SensorState NamedSensor::getState(byte valueId) {
 	return sensorStates[valueId];
 }
 
-SensorValueType NamedSensor::getValueType(unsigned char valueId) {
+SensorValueType NamedSensor::getValueType(byte valueId) {
 	return FLOAT_VALUE;
 }
 
 void SensorPrint(Print& print, NamedSensor& sensor) {
-	for (unsigned char i = 0; i < sensor.getNumSensors(); ++i) {
-		SensorPrint(print, sensor, i);
+	for (byte i = 0; i < sensor.getNumSensors(); ++i) {
 		if(i>0)
 			print.print(", ");
+		SensorPrint(print, sensor, i);
 	}
 }
 
-void SensorPrint(Print& print, NamedSensor& sensor, unsigned char valueId) {
+void SensorPrint(Print& print, NamedSensor& sensor, byte valueId) {
 	print.print(sensor.getName(valueId));
-	print.print(": ");
+	print.print(":");
 	switch (sensor.getState(valueId)) {
-	OK: if (sensor.getValueType(valueId) == FLOAT_VALUE)
-		print.print(sensor.valueF(valueId), 1);
-	if (sensor.getValueType(valueId) == INTEGER_VALUE)
-		print.print(sensor.valueI());
-	break;
-	NOT_READ: print.print("?");
-	break;
-	ERROR_READING: print.print("!");
-	break;
+	case OK:
+		//Serial.println(sensor.getValueType(valueId));
+		if (sensor.getValueType(valueId) == FLOAT_VALUE)
+			print.print(sensor.valueF(valueId), 1);
+		if (sensor.getValueType(valueId) == INTEGER_VALUE)
+			print.print(sensor.valueI(valueId));
+		break;
+	case NOT_READ:
+		print.print("?");
+		break;
+	case ERROR_READING:
+		print.print("!");
+		break;
 	}
 }
 
 void SensorPrintLn(Print& print, NamedSensor& sensor) {
-	for(unsigned char i = 0; i < sensor.getNumSensors(); ++i)
+	for(byte i = 0; i < sensor.getNumSensors(); ++i)
 		SensorPrintLn(print, sensor, i);
 }
 
-void SensorPrintLn(Print& print, NamedSensor& sensor, unsigned char valueId) {
+void SensorPrintLn(Print& print, NamedSensor& sensor, byte valueId) {
 	SensorPrint(print, sensor, valueId);
 	print.println();
 }
 
-unsigned char NamedSensor::getNumSensors() {
+byte NamedSensor::getNumSensors() {
 	return numSensors;
 }
 
-const char* NamedSensor::getName(unsigned char valueId) {
+const char* NamedSensor::getName(byte valueId) {
 	return sensorNames[valueId];
+}
+
+void NamedSensor::readSensors() {
+	if(hasCooledOff()) {
+		doReadSensors();
+	}
 }

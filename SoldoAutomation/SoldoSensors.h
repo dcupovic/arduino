@@ -18,5 +18,6 @@
 extern NamedSensor* soldoSensors[SOLDO_SENSORS_COUNT];
 
 void initSensors();
+void readSensors();
 
 #endif /* SOLDOSENSORS_H_ */

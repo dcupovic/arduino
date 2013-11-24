@@ -9,7 +9,7 @@
 
 NamedOneWireSensor::NamedOneWireSensor(uint8_t pin, const byte* address,
 		const char* name) :
-		NamedSensor(1, &name, 5000u), pin(pin), address(address) {
+		NamedSensor(1, &sname, 5000u), pin(pin), address(address), sname(name) {
 	switch (address[0]) {
 	case 0x10:
 		type_s = 1;
@@ -23,7 +23,7 @@ NamedOneWireSensor::NamedOneWireSensor(uint8_t pin, const byte* address,
 	}
 }
 
-void NamedOneWireSensor::readSensors() {
+void NamedOneWireSensor::doReadSensors() {
 	OneWire* oneWire = OneWireFactory::getForPin(pin);
 	static byte data[12];
 	static byte present;
@@ -41,7 +41,7 @@ void NamedOneWireSensor::readSensors() {
 		data[i] = oneWire->read();
 	}
 	if(oneWire->crc8(data, 8) != data[8]) {
-		sensorStates[0] = NOT_READ;
+		sensorStates[0] = ERROR_READING;
 		return;
 	} else
 		sensorStates[0] = OK;

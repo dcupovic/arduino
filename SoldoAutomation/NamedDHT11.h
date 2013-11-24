@@ -8,6 +8,7 @@
 #ifndef NAMEDDHT11_H_
 #define NAMEDDHT11_H_
 
+#define _DEBUG
 #include "NamedSensor.h"
 #include "dht11.h"
 
@@ -16,11 +17,11 @@ private:
 	static dht11 DHT11;
 	int pin;
 protected:
-	void readSensors();
+	void doReadSensors();
 public:
 	NamedDHT11(int pin, const char * const * names);
 	virtual ~NamedDHT11();
-	SensorValueType getValueType(int valueId);
+	SensorValueType getValueType(byte valueId);
 };
 
 #endif /* NAMEDDHT11_H_ */
