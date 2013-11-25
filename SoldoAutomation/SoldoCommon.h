@@ -22,4 +22,6 @@
 #define PORT2_WIRE7_PIN 30
 #define PORT2_WIRE8_PIN 32
 
+#define IR_PIN 44
+
 #endif /* SOLDOCOMMON_H_ */
