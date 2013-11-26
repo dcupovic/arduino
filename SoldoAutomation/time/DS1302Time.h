@@ -9,10 +9,13 @@
 #define DS1302TIME_H_
 #include "Time/Time.h"
 #include "DS1302.h"
-#include "SoldoCommon.h"
+#include "../SoldoCommon.h"
+#include "Print.h"
 
 void initTime();
-void digitalClockDisplay();
+void digitalClockDisplay(Print &print);
+void digitalDateDisplay(Print& print);
+void digitalTimeDisplay(Print& print);
 
 
 #endif /* DS1302TIME_H_ */

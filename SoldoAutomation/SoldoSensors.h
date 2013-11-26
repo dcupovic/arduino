@@ -9,12 +9,12 @@
 #define SOLDOSENSORS_H_
 
 #include "Arduino.h"
-#include "NamedSensor.h"
-#include "NamedDHT11.h"
-#include "NamedOneWireSensor.h"
+#include "sensors/NamedSensor.h"
+#include "sensors/NamedDHT11.h"
+#include "sensors/NamedOneWireSensor.h"
 #include "SoldoCommon.h"
 
-#define SOLDO_SENSORS_COUNT 5
+#define SOLDO_SENSORS_COUNT  5
 extern NamedSensor* soldoSensors[SOLDO_SENSORS_COUNT];
 
 void initSensors();

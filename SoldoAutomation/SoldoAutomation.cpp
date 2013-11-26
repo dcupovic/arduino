@@ -22,6 +22,6 @@ void loop()
 	Serial.println("============");
 	loopIR();
 	loopLCD();
-	digitalClockDisplay();
+	//digitalClockDisplay();
 	delay(500);
 }

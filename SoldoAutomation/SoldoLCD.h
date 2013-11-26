@@ -8,9 +8,10 @@
 #ifndef SOLDOLCD_H_
 #define SOLDOLCD_H_
 
-#include "PagedLCD.h"
+#include "LCD/PagedLCD.h"
 #include "LCD.h"
-#include "NamedSensor.h"
+#include "sensors/NamedSensor.h"
+#include "time/DS1302Time.h"
 
 class SoldoLCD: public PagedLCD {
 private:

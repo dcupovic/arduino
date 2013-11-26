@@ -43,7 +43,11 @@ void SoldoLCD::displayPage(byte page) {
 		break;
 	case 2:
 		goto1of4();
-		lcd.print("Broj tri");
+		digitalDateDisplay(lcd);
+		printSpaces();
+		goto3of4();
+		digitalTimeDisplay(lcd);
+		printSpaces();
 		break;
 	}
 }

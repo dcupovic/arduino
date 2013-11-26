@@ -36,4 +36,5 @@ void PagedLCD::setPage(byte page) {
 		currentPage = numPages - 1;
 	lcd.backlight();
 	backlightTime = millis();
+	time = backlightTime;
 }
