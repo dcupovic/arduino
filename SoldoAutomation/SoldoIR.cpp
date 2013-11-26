@@ -16,7 +16,7 @@ void initIR() {
 
 void loopIR() {
 	if (irrecv.decode(&results)) {
-		//Serial.println(results.value, HEX);
+		Serial.println(results.value, HEX);
 		switch (results.value) {
 		case 0xFF6897:
 //			Serial.println(" 0              ");
@@ -24,14 +24,17 @@ void loopIR() {
 
 		case 0xFF30CF:
 //			Serial.println(" 1              ");
+			setLCDPage(0);
 			break;
 
 		case 0xFF18E7:
 //			Serial.println(" 2              ");
+			setLCDPage(1);
 			break;
 
 		case 0xFF7A85:
 //			Serial.println(" 3              ");
+			setLCDPage(2);
 			break;
 
 		case 0xFF10EF:

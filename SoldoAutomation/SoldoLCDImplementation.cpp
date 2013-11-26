@@ -18,6 +18,6 @@ void loopLCD() {
 	lcd.display();
 }
 
-void setPage(byte page) {
+void setLCDPage(byte page) {
 	lcd.setPage(page);
 }

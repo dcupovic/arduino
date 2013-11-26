@@ -32,6 +32,11 @@
 			<locationURI>ArduinoPivateLibPath/DHT</locationURI>
 		</link>
 		<link>
+			<name>Libraries/DS1302</name>
+			<type>2</type>
+			<locationURI>ArduinoPivateLibPath/DS1302</locationURI>
+		</link>
+		<link>
 			<name>Libraries/IRremote</name>
 			<type>2</type>
 			<locationURI>ArduinoPivateLibPath/IRremote</locationURI>
@@ -45,6 +50,11 @@
 			<name>Libraries/OneWire</name>
 			<type>2</type>
 			<locationURI>ArduinoPivateLibPath/OneWire</locationURI>
+		</link>
+		<link>
+			<name>Libraries/Time</name>
+			<type>2</type>
+			<locationURI>ArduinoPivateLibPath/Time</locationURI>
 		</link>
 		<link>
 			<name>Libraries/Wire</name>

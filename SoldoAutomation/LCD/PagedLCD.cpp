@@ -25,7 +25,7 @@ void PagedLCD::display() {
 	}
 	if(now - backlightTime >= 30000) {
 		backlightTime = now;
-		//lcd.noBacklight();
+		lcd.noBacklight();
 	}
 	displayPage(currentPage);
 }

@@ -12,6 +12,7 @@
 #include "SoldoCommon.h"
 #include "SoldoLCDImplementation.h"
 
-
+void initIR();
+void loopIR();
 
 #endif /* SOLDOIR_H_ */

@@ -15,5 +15,7 @@
 
 void initLCD();
 void loopLCD();
+void setLCDPage(byte page);
+
 
 #endif /* SOLDOLCDIMPLEMENTATION_H_ */

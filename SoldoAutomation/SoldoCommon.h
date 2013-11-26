@@ -24,4 +24,8 @@
 
 #define IR_PIN 44
 
+#define DS1302_CLK 38
+#define DS1302_DAT 37
+#define DS1302_RST 36
+
 #endif /* SOLDOCOMMON_H_ */

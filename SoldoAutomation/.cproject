@@ -27,6 +27,8 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SoldoAutomation/Libraries/Wire}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SoldoAutomation/Libraries/Wire/utility}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SoldoAutomation/Libraries/IRremote}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SoldoAutomation/Libraries/Time}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SoldoAutomation/Libraries/DS1302}&quot;"/>
 								</option>
 								<inputType id="it.baeyens.arduino.compiler.cpp.sketch.input.942371462" name="CPP source files" superClass="it.baeyens.arduino.compiler.cpp.sketch.input"/>
 							</tool>
@@ -40,6 +42,8 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SoldoAutomation/Libraries/Wire}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SoldoAutomation/Libraries/Wire/utility}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SoldoAutomation/Libraries/IRremote}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SoldoAutomation/Libraries/Time}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SoldoAutomation/Libraries/DS1302}&quot;"/>
 								</option>
 								<inputType id="it.baeyens.arduino.compiler.c.sketch.input.1106072824" name="C Source Files" superClass="it.baeyens.arduino.compiler.c.sketch.input"/>
 							</tool>

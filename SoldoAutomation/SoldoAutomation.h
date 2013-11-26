@@ -10,6 +10,8 @@
 //add your includes for the project SoldoAutomation here
 #include "SoldoSensors.h"
 #include "SoldoLCDImplementation.h"
+#include "SoldoIR.h"
+#include "DS1302Time.h"
 
 //end of add your includes here
 #ifdef __cplusplus
