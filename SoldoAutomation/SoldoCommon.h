@@ -28,4 +28,7 @@
 #define DS1302_DAT 37
 #define DS1302_RST 36
 
+#define RELAY1_EEPROM_ADDRESS 0
+#define RELAY2_EEPROM_ADDRESS 10
+
 #endif /* SOLDOCOMMON_H_ */

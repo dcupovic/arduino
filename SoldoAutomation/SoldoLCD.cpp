@@ -8,13 +8,13 @@
 #include "SoldoLCD.h"
 
 SoldoLCD::SoldoLCD(LCD& lcd, NamedSensor** sensors) :
-		PagedLCD(lcd, 3), sensors(sensors) {
+		PagedLCD(lcd, 4, 2), sensors(sensors) {
 	// TODO Auto-generated constructor stub
 }
 
-void SoldoLCD::displayPage(byte page) {
+void SoldoLCD::displayPage(byte page, byte selection) {
 	switch (page) {
-	case 0:
+	case 0: // two dht11s
 		goto1of4();
 		SensorPrint(lcd, *(sensors[0]), 0);
 		printSpaces();
@@ -28,7 +28,7 @@ void SoldoLCD::displayPage(byte page) {
 		SensorPrint(lcd, *(sensors[1]), 1);
 		printSpaces();
 		break;
-	case 1:
+	case 1: //3 one wire temperature sensors
 		goto1of4();
 		SensorPrint(lcd, *(sensors[2]), 0);
 		printSpaces();
@@ -41,7 +41,23 @@ void SoldoLCD::displayPage(byte page) {
 		goto4of4();
 		printSpaces();
 		break;
-	case 2:
+	case 2: //2 relays
+		goto1of4();
+		SensorPrint(lcd, *(sensors[5]), 0);
+		if(selection == 1)
+			lcd.print('*');
+		printSpaces();
+		goto2of4();
+		SensorPrint(lcd, *(sensors[6]), 0);
+		if(selection == 2)
+			lcd.print('*');
+		printSpaces();
+		goto3of4();
+		printSpaces();
+		goto4of4();
+		printSpaces();
+		break;
+	case 3: //date & time
 		goto1of4();
 		digitalDateDisplay(lcd);
 		printSpaces();
@@ -78,6 +94,10 @@ void SoldoLCD::goto4of4() {
 
 void SoldoLCD::printSpaces() {
 	lcd.print("        ");
+}
+
+byte SoldoLCD::getPageForSelection(byte selection) {
+	return 2;
 }
 
 SoldoLCD::~SoldoLCD() {

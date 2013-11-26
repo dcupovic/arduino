@@ -12,6 +12,7 @@ SoldoLCD lcd(lcdDisplay, soldoSensors);
 
 void initLCD() {
 	lcdDisplay.begin(16, 2);
+	//lcdDisplay.blink();
 }
 
 void loopLCD() {
@@ -20,4 +21,16 @@ void loopLCD() {
 
 void setLCDPage(byte page) {
 	lcd.setPage(page);
+}
+
+void LCDselectNext() {
+	lcd.selectNext();
+}
+
+void LCDselectPrevious() {
+	lcd.selectPrevious();
+}
+
+byte getCurrentLCDSelection() {
+	return lcd.getCurrentSelection();
 }

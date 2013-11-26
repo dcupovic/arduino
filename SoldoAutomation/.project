@@ -37,6 +37,11 @@
 			<locationURI>ArduinoPivateLibPath/DS1302</locationURI>
 		</link>
 		<link>
+			<name>Libraries/EEPROM</name>
+			<type>2</type>
+			<locationURI>ArduinoLibPath/EEPROM</locationURI>
+		</link>
+		<link>
 			<name>Libraries/IRremote</name>
 			<type>2</type>
 			<locationURI>ArduinoPivateLibPath/IRremote</locationURI>

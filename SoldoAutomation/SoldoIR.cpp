@@ -39,6 +39,7 @@ void loopIR() {
 
 		case 0xFF10EF:
 //			Serial.println(" 4              ");
+			setLCDPage(3);
 			break;
 
 		case 0xFF38C7:
@@ -61,6 +62,27 @@ void loopIR() {
 //			Serial.println(" 9              ");
 			break;
 
+		case 0xFFE01F:
+//		    Serial.println(" VOL-           ");
+			if(getCurrentLCDSelection() == 1) soldoRelays[0]->Off();
+			if(getCurrentLCDSelection() == 2) soldoRelays[1]->Off();
+			break;
+
+		case 0xFFA857:
+			//Serial.println(" VOL+           ");
+			if(getCurrentLCDSelection() == 1) soldoRelays[0]->On();
+			if(getCurrentLCDSelection() == 2) soldoRelays[1]->On();
+			break;
+
+		case 0xFF22DD:
+			//Serial.println(" PREV           ");
+			LCDselectPrevious();
+			break;
+
+		case 0xFF02FD:
+			//Serial.println(" NEXT           ");
+			LCDselectNext();
+			break;
 //		default:
 //			Serial.println(" other button   ");
 

@@ -16,6 +16,9 @@
 void initLCD();
 void loopLCD();
 void setLCDPage(byte page);
+void LCDselectNext();
+void LCDselectPrevious();
+byte getCurrentLCDSelection(); //zero if none selected
 
 
 #endif /* SOLDOLCDIMPLEMENTATION_H_ */

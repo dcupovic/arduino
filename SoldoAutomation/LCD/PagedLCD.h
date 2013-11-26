@@ -12,16 +12,21 @@
 
 class PagedLCD {
 private:
-	byte numPages, currentPage;
-	unsigned long time, backlightTime;
+	byte numPages, currentPage, numSelections, currentSelection;
+	unsigned long time, backlightTime, selectionTime;
+	void updatePageForSelection();
 protected:
 	LCD& lcd;
-	virtual void displayPage(byte page) = 0;
+	virtual void displayPage(byte page, byte selection) = 0; //selection = 1..numSelections, 0 if none selected
+	virtual byte getPageForSelection(byte selection);
 public:
-	PagedLCD(LCD& lcd, byte numPages);
+	PagedLCD(LCD& lcd, byte numPages, byte numSelections);
 	virtual ~PagedLCD();
 	void display();
 	void setPage(byte page);
+	void selectNext();
+	void selectPrevious();
+	byte getCurrentSelection();
 };
 
 #endif /* PAGEDLCD_H_ */

@@ -17,7 +17,7 @@ class SoldoLCD: public PagedLCD {
 private:
 	NamedSensor** sensors;
 protected:
-	void displayPage(byte page);
+	void displayPage(byte page, byte selection);
 	void goto1of2();
 	void goto2of2();
 	void goto1of4();
@@ -25,6 +25,7 @@ protected:
 	void goto3of4();
 	void goto4of4();
 	void printSpaces();
+	byte getPageForSelection(byte selection);
 public:
 	SoldoLCD(LCD& lcd, NamedSensor** sensors);
 	virtual ~SoldoLCD();

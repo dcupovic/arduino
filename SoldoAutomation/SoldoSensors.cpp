@@ -8,6 +8,8 @@
 
 
 NamedSensor* soldoSensors[SOLDO_SENSORS_COUNT];
+NamedRelay* soldoRelays[SOLDO_RELAY_COUNT];
+
 //DHTs
 const char* PROGMEM dhtNameT1 = "TZ1";
 const char* PROGMEM dhtNameV1 = "VZ1%";
@@ -21,10 +23,13 @@ const char * const dhtNames2[] = {dhtNameT2, dhtNameV2};
 const char* PROGMEM TName1 = "T1";
 const char* PROGMEM TName2 = "T2";
 const char* PROGMEM TName3 = "T3";
-const char * const TNames1[] = {TName1};
 const byte  T1Address[] = {0x28, 0x3A, 0x70, 0xAC, 0x04, 0x00 ,0x00, 0x74};
 const byte  T2Address[] = {0x28, 0x16, 0xBF, 0xAB, 0x04, 0x00 ,0x00, 0x74};
 const byte  T3Address[] = {0x28, 0x4B, 0x28, 0xAC, 0x04, 0x00 ,0x00, 0x70};
+//Relays
+const char* PROGMEM RName1 = "R1";
+const char* PROGMEM RName2 = "R2";
+
 
 void initSensors() {
 	soldoSensors[0] = new NamedDHT11(PORT2_WIRE5_PIN, dhtNames1);
@@ -35,6 +40,10 @@ void initSensors() {
 			TName2);
 	soldoSensors[4] = new NamedOneWireSensor(PORT2_WIRE4_PIN, T3Address,
 			TName3);
+	soldoSensors[5] = soldoRelays[0] = new NamedRelay(PORT2_WIRE7_PIN,
+			RELAY1_EEPROM_ADDRESS, RName1);
+	soldoSensors[6] = soldoRelays[1] = new NamedRelay(PORT2_WIRE8_PIN,
+			RELAY2_EEPROM_ADDRESS, RName2);
 }
 
 void readSensors() {

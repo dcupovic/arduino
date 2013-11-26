@@ -12,10 +12,13 @@
 #include "sensors/NamedSensor.h"
 #include "sensors/NamedDHT11.h"
 #include "sensors/NamedOneWireSensor.h"
+#include "relay/NamedRelay.h"
 #include "SoldoCommon.h"
 
-#define SOLDO_SENSORS_COUNT  5
+#define SOLDO_SENSORS_COUNT 7
+#define SOLDO_RELAY_COUNT 7
 extern NamedSensor* soldoSensors[SOLDO_SENSORS_COUNT];
+extern NamedRelay* soldoRelays[SOLDO_RELAY_COUNT];
 
 void initSensors();
 void readSensors();
