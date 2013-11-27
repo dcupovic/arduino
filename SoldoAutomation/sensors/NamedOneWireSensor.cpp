@@ -31,8 +31,13 @@ void NamedOneWireSensor::doReadSensors() {
 	oneWire->select(address);
 	oneWire->write(0x44, 1);        // start conversion, with parasite power on at the end
 
-	delay(500);     // maybe 750ms is enough, maybe not
-	// we might do a ds.depower() here, but the reset will take care of it.
+	delay(50);
+	// not sure what to put here, since they have external power source
+	// all the examples are with parasite power which requires some time
+	// for sensor to "charge". With external power source this should not be
+	// necessary and large pause makes other things (especially LCD)  less
+	// responsive.
+
 
 	present = oneWire->reset();
 	oneWire->select(address);

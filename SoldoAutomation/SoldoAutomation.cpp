@@ -10,6 +10,7 @@ void setup()
 	initLCD();
 	initIR();
 	initTime();
+	//initEthernet();
 }
 
 // The loop function is called in an endless loop
@@ -22,6 +23,7 @@ void loop()
 	Serial.println("============");
 	loopIR();
 	loopLCD();
+	//loopEthernet();
 	//digitalClockDisplay();
-	delay(500);
+	delay(100);
 }

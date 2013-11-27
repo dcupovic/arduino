@@ -42,6 +42,11 @@
 			<locationURI>ArduinoLibPath/EEPROM</locationURI>
 		</link>
 		<link>
+			<name>Libraries/EtherCard</name>
+			<type>2</type>
+			<locationURI>ArduinoPivateLibPath/EtherCard</locationURI>
+		</link>
+		<link>
 			<name>Libraries/IRremote</name>
 			<type>2</type>
 			<locationURI>ArduinoPivateLibPath/IRremote</locationURI>

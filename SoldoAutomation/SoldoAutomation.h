@@ -12,6 +12,7 @@
 #include "SoldoLCDImplementation.h"
 #include "SoldoIR.h"
 #include "time/DS1302Time.h"
+//#include "SoldoEthernet.h"
 
 //end of add your includes here
 #ifdef __cplusplus
