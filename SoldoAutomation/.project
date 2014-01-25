@@ -27,51 +27,6 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>Libraries/DHT</name>
-			<type>2</type>
-			<locationURI>ArduinoPivateLibPath/DHT</locationURI>
-		</link>
-		<link>
-			<name>Libraries/DS1302</name>
-			<type>2</type>
-			<locationURI>ArduinoPivateLibPath/DS1302</locationURI>
-		</link>
-		<link>
-			<name>Libraries/EEPROM</name>
-			<type>2</type>
-			<locationURI>ArduinoLibPath/EEPROM</locationURI>
-		</link>
-		<link>
-			<name>Libraries/EtherCard</name>
-			<type>2</type>
-			<locationURI>ArduinoPivateLibPath/EtherCard</locationURI>
-		</link>
-		<link>
-			<name>Libraries/IRremote</name>
-			<type>2</type>
-			<locationURI>ArduinoPivateLibPath/IRremote</locationURI>
-		</link>
-		<link>
-			<name>Libraries/LiquidCrystal</name>
-			<type>2</type>
-			<locationURI>ArduinoPivateLibPath/LiquidCrystal</locationURI>
-		</link>
-		<link>
-			<name>Libraries/OneWire</name>
-			<type>2</type>
-			<locationURI>ArduinoPivateLibPath/OneWire</locationURI>
-		</link>
-		<link>
-			<name>Libraries/Time</name>
-			<type>2</type>
-			<locationURI>ArduinoPivateLibPath/Time</locationURI>
-		</link>
-		<link>
-			<name>Libraries/Wire</name>
-			<type>2</type>
-			<locationURI>ArduinoHardwareLibPath/Wire</locationURI>
-		</link>
-		<link>
 			<name>arduino/core</name>
 			<type>2</type>
 			<locationURI>ArduinoPlatformPath/cores/arduino</locationURI>
