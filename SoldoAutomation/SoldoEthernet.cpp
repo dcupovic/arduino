@@ -17,6 +17,7 @@ static byte gwip[] = { 192,168,1,1 };
 static byte myip[] = { 192,168,14,200 };
 static byte gwip[] = { 192,168,14,1 };
 #endif
+static byte mydns[] = { 8,8,8,8 };
 
 #ifdef SOLDO
 char website[] PROGMEM = "192.168.1.100";
@@ -32,6 +33,8 @@ unsigned long lastSendTime;
 
 void initEthernet() {
 	lastSendTime = millis();
+	delay(1000);
+	Ethernet.begin(mymac, myip, mydns);
 }
 
 int buildRequestString(NamedSensor* sensors[], int numSensors, char* requestString) {
