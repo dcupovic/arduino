@@ -8,7 +8,11 @@
 #define SoldoAutomation_H_
 #include "Arduino.h"
 //add your includes for the project SoldoAutomation here
-
+#include "SoldoSensors.h"
+#include "SoldoLCDImplementation.h"
+#include "SoldoIR.h"
+#include "time/DS1302Time.h"
+//#include "SoldoEthernet.h"
 
 //end of add your includes here
 #ifdef __cplusplus
