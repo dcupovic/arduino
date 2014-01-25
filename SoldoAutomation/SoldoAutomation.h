@@ -4,15 +4,16 @@
 // - extern variable definitions
 // In the appropriate section
 
-#ifndef SoldoAutomation_H_
-#define SoldoAutomation_H_
+#ifndef _SoldoAutomation_H_
+#define _SoldoAutomation_H_
 #include "Arduino.h"
 //add your includes for the project SoldoAutomation here
 #include "SoldoSensors.h"
 #include "SoldoLCDImplementation.h"
 #include "SoldoIR.h"
 #include "time/DS1302Time.h"
-//#include "SoldoEthernet.h"
+#include "SoldoEthernet.h"
+
 
 //end of add your includes here
 #ifdef __cplusplus
@@ -30,4 +31,4 @@ void setup();
 
 
 //Do not add code below this line
-#endif /* SoldoAutomation_H_ */
+#endif /* _SoldoAutomation_H_ */

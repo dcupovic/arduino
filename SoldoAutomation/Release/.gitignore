@@ -1,10 +1,10 @@
+/LCD
+/Libraries
 /arduino
 /makefile
 /objects.mk
-/sources.mk
-/subdir.mk
-/Libraries
-/LCD
 /relay
 /sensors
+/sources.mk
+/subdir.mk
 /time

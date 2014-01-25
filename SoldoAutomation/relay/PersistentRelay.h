@@ -9,7 +9,7 @@
 #define PERSISTENTRELAY_H_
 
 #include "Arduino.h"
-#include "src/EEPROM.h"
+#include "EEPROM.h"
 #include "Relay.h"
 
 class PersistentRelay: public Relay {
