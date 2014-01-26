@@ -28,10 +28,10 @@ static IPAddress serverIp(192, 168, 14, 157);
 #endif
 
 static char request[50];
-static bool initialized;
 unsigned long lastSendTime;
 EthernetClient client;
-boolean lastConnected = false;
+EthernetServer server(80);
+String readString;
 
 void initEthernet() {
 	lastSendTime = millis();
@@ -72,43 +72,111 @@ int buildRequestString(NamedSensor* sensors[], int numSensors,
 	return count;
 }
 
-void loopEthernet() {
+void sendData() {
+	request[0] = '?';
+	int sensorsRead = buildRequestString(soldoSensors, SOLDO_SENSORS_COUNT,
+			request + 1);
+	if (sensorsRead > 0) {
 
-	while (client.available() && client.connected()) {
-		char c = client.read();
-		Serial.print(c);
-	}
+		if (client.connect(serverIp, 80)) {
+			Serial.println("connecting...");
+			// send the HTTP PUT request:
+			client.print("GET /index.py");
+			client.print(request);
+			client.println(" HTTP/1.0");
+			client.println();
 
-	if (!client.connected() && lastConnected) {
+		} else {
+			// if you couldn't make a connection:
+			Serial.println("connection failed");
+			Serial.println("disconnecting.");
+			client.stop();
+		}
+		int cc = 20000;
+		while (client.connected() && !client.available()) {
+			delay(1); //waits for data
+			if(cc--) break;
+		}
+		while (client.connected() || client.available()) { //connected or data available
+			char c = client.read();
+			//Serial.print(c);
+		}
 		Serial.println();
 		Serial.println("disconnecting.");
+		Serial.println("==================");
+		Serial.println();
 		client.stop();
 	}
+}
 
-	if (lastSendTime - millis() > ETHERNET_REPORTING_FREQUENCY_MS) {
-		lastSendTime += ETHERNET_REPORTING_FREQUENCY_MS;
-		request[0] = '?';
-		int sensorsRead = buildRequestString(soldoSensors, SOLDO_SENSORS_COUNT,
-				request + 1);
-		if (sensorsRead > 0) {
-			Serial.println(request);
-			if (client.connect(serverIp, 80)) {
-				Serial.println("connecting...");
-				// send the HTTP PUT request:
-				client.print("GET /index.py");
-				client.print(request);
-				client.println(" HTTP/1.0");
-				client.println();
+void loopServer() {
+	EthernetClient client = server.available();
+	if (client) {
+		while (client.connected()) {
+			if (client.available()) {
+				char c = client.read();
 
-			} else {
-				// if you couldn't make a connection:
-				Serial.println("connection failed");
-				Serial.println("disconnecting.");
-				client.stop();
+				//read char by char HTTP request
+				if (readString.length() < 100) {
+
+					//store characters to string
+					readString += c;
+					//Serial.print(c);
+				}
+
+				//if HTTP request has ended
+				if (c == '\n') {
+
+					///////////////
+					Serial.print(readString); //print to serial monitor for debuging
+
+					//now output HTML data header
+					client.println(F("HTTP/1.1 200 OK")); //send new page on browser request
+					client.println(F("Content-Type: text/html"));
+					client.println();
+
+					client.println(F("Ok"));
+
+					delay(1);
+					//stopping client
+					client.stop();
+
+					if (readString.indexOf("R1=1") > 0){
+						soldoRelays[0]->On();
+//						Serial.println(">>>>>>>>>>>>");
+//						Serial.println("R1=1");
+					}
+					if (readString.indexOf("R2=1") > 0){
+						soldoRelays[1]->On();
+//						Serial.println(">>>>>>>>>>>>");
+//						Serial.println("R2=1");
+					}
+					if (readString.indexOf("R1=0") > 0){
+						soldoRelays[0]->Off();
+//						Serial.println(">>>>>>>>>>>>");
+//						Serial.println("R1=0");
+					}
+					if (readString.indexOf("R2=0") > 0){
+						soldoRelays[1]->Off();
+//						Serial.println(">>>>>>>>>>>>");
+//						Serial.println("R2=0");
+					}
+					readString="";
+
+				}
 			}
 		}
 	}
+}
 
-	lastConnected = client.connected();
+void loopEthernet() {
+
+	//Client
+	if (lastSendTime - millis() > ETHERNET_REPORTING_FREQUENCY_MS) {
+		lastSendTime += ETHERNET_REPORTING_FREQUENCY_MS;
+		sendData();
+	}
+	//Server
+	loopServer();
 }
 
