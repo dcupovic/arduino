@@ -6,30 +6,32 @@
  */
 #include "SoldoEthernet.h"
 
-static byte mymac[] = { 0x74,0x69,0x69,0x2d,0xa0,0x31 };
+static byte mymac[] = { 0x74, 0x69, 0x69, 0x2d, 0xa0, 0x31 };
 
 #define _SOLDO
 
 #ifdef SOLDO
-static byte myip[] = { 192,168,1,200 };
-static byte gwip[] = { 192,168,1,1 };
+static IPAddress myip(192,168,1,200);
+static IPAddress gwip(192,168,1,1);
 #else
-static byte myip[] = { 192,168,14,200 };
-static byte gwip[] = { 192,168,14,1 };
+static IPAddress myip(192, 168, 14, 200);
+static IPAddress gwip(192, 168, 14, 1);
 #endif
-static byte mydns[] = { 8,8,8,8 };
+static IPAddress mydns(8, 8, 8, 8);
 
 #ifdef SOLDO
 char website[] PROGMEM = "192.168.1.100";
-static byte serverIp[] = { 192,168,1,100 };
+static IPAddress serverIp(192,168,1,100);
 #else
 char website[] PROGMEM = "192.168.14.157";
-static byte serverIp[] = { 192,168,14,157 };
+static IPAddress serverIp(192, 168, 14, 157);
 #endif
 
 static char request[50];
 static bool initialized;
 unsigned long lastSendTime;
+EthernetClient client;
+boolean lastConnected = false;
 
 void initEthernet() {
 	lastSendTime = millis();
@@ -37,7 +39,8 @@ void initEthernet() {
 	Ethernet.begin(mymac, myip, mydns);
 }
 
-int buildRequestString(NamedSensor* sensors[], int numSensors, char* requestString) {
+int buildRequestString(NamedSensor* sensors[], int numSensors,
+		char* requestString) {
 	int count = 0;
 	bool first = true;
 	char *r = requestString;
@@ -56,8 +59,10 @@ int buildRequestString(NamedSensor* sensors[], int numSensors, char* requestStri
 					r = r + sprintf(r, "%d", sensors[i]->valueI(j));
 					break;
 				case FLOAT_VALUE:
-					long f = (long)(sensors[i]->valueF(j) * 100.0);
-					r = r + sprintf(r, "%d.%02d", (int)(f/100), (int)(f%100));
+					long f = (long) (sensors[i]->valueF(j) * 100.0);
+					r = r
+							+ sprintf(r, "%d.%02d", (int) (f / 100),
+									(int) (f % 100));
 					break;
 				}
 				++count;
@@ -67,17 +72,43 @@ int buildRequestString(NamedSensor* sensors[], int numSensors, char* requestStri
 	return count;
 }
 
-
 void loopEthernet() {
-	if(lastSendTime - millis() > ETHERNET_REPORTING_FREQUENCY_MS) {
+
+	while (client.available() && client.connected()) {
+		char c = client.read();
+		Serial.print(c);
+	}
+
+	if (!client.connected() && lastConnected) {
+		Serial.println();
+		Serial.println("disconnecting.");
+		client.stop();
+	}
+
+	if (lastSendTime - millis() > ETHERNET_REPORTING_FREQUENCY_MS) {
 		lastSendTime += ETHERNET_REPORTING_FREQUENCY_MS;
 		request[0] = '?';
-		int sensorsRead = buildRequestString(soldoSensors, SOLDO_SENSORS_COUNT, request + 1);
-		if(sensorsRead > 0) {
+		int sensorsRead = buildRequestString(soldoSensors, SOLDO_SENSORS_COUNT,
+				request + 1);
+		if (sensorsRead > 0) {
 			Serial.println(request);
-//		    ether.browseUrl(PSTR("/index.py"), request, website, my_callback);
+			if (client.connect(serverIp, 80)) {
+				Serial.println("connecting...");
+				// send the HTTP PUT request:
+				client.print("GET /index.py");
+				client.print(request);
+				client.println(" HTTP/1.0");
+				client.println();
+
+			} else {
+				// if you couldn't make a connection:
+				Serial.println("connection failed");
+				Serial.println("disconnecting.");
+				client.stop();
+			}
 		}
 	}
-}
 
+	lastConnected = client.connected();
+}
 
